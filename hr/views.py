@@ -7,3 +7,8 @@ def hr(request):
     return render(request ,'hr/hr.html' , {'hodimlar':hodimlar})
 
 
+
+def hr_1(request , id):
+    hr = Workers.objects.get(id=id)
+    return render(request , 'hr/hr_detail.html' , {'hr':hr})
+

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniques CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Maxsus scrollbar dizayni */
@@ -40,50 +41,75 @@
         </div>
     </div>
 
-    <main class="flex-1 p-8 overflow-y-auto">
+<main class="flex-1 p-8 overflow-y-auto">
         <div class="max-w-6xl mx-auto">
             <div class="overflow-hidden rounded-xl border border-white/10 bg-gray-900 shadow-2xl">
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="min-w-full divide-y divide-white/5">
                         <thead class="bg-white/5">
                             <tr>
-                                <th scope="col" class="px-6 py-4 text-start text-xs font-bold text-slate-400 uppercase tracking-wider">Categrorys</th>
-                                <th scope="col" class="px-6 py-4 text-start text-xs font-bold text-slate-400 uppercase tracking-wider">Name</th>
-                                <th scope="col" class="px-6 py-4 text-start text-xs font-bold text-slate-400 uppercase tracking-wider">unit</th>
-                                <th scope="col" class="px-6 py-4 text-end text-xs font-bold text-slate-400 uppercase tracking-wider">amout</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Categories</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">name</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Unit</th>
+                                <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-slate-400 uppercase tracking-wider">Amount</th>
+                                <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
+                        
                         <tbody class="divide-y divide-white/5">
-    {% for i in product %}
-    <tr class="hover:bg-white/[0.02] transition-colors group">
+                            {% for item in product %}
+                            <tr class="hover:bg-white/[0.02] transition-colors group">
 
-        {% for i in category %}
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
-            {{ i.name }}
-        </td>
-        {% endfor %}
+                                {% for i in item.category.all %}
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                                    {{i.name}}
+                                </td>
+                                {% endfor %}
 
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
-            {{ i.name }}
-        </td>
+                                
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                                    <a href="{% url 'product_detail' item.id %}" class="hover:text-blue-400 transition-colors">
+                                        {{ item.name }}
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                                    {{ item.unit }}
+                                </td>
 
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
-            {{ i.unit }}
-        </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-mono text-emerald-400">
+                                    {{ item.amout }}
+                                </td>
 
-        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-mono text-emerald-400">
-            {{ i.amout }}
-        </td>
-
-            </tr>
-            {% endfor %}
-        </tbody>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <div class="flex justify-center items-center space-x-3">
+                                        <a href = "{% url 'product_update' item.id %}" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                        </a>
+                                        <a href="{% url 'product_delate' item.id %}" class="text-red-400 hover:text-red-300 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="px-6 py-10 text-center text-slate-500 italic">
+                                    Ma'lumotlar topilmadi.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </main>
+
 </div>
 
-</body>
+</body> 
 </html>

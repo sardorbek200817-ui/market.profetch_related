@@ -40,6 +40,9 @@
         </div>
     </div>
 
+
+
+    
     <main class="flex-1 p-8 overflow-y-auto">
         <div class="max-w-6xl mx-auto">
             <div class="overflow-hidden rounded-xl border border-white/10 bg-gray-900 shadow-2xl">
@@ -57,9 +60,15 @@
     {% for i in hodimlar %}
     <tr class="hover:bg-white/[0.02] transition-colors group">
         
-      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
-            {{ i.first_name }}
-        </td>
+
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+        <form action="{% url 'hr_1' i.id %}" method="POST" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="hover:text-blue-400 transition-colors bg-transparent border-none p-0 cursor-pointer text-white font-medium">
+                {{ i.first_name }}
+            </button>
+        </form>
+     </td>
 
         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
             {{ i.last_name }}
@@ -82,6 +91,11 @@
         </div>
     </main>
 </div>
+
+
+
+
+
 
 </body>
 </html>

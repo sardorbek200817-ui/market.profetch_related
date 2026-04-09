@@ -29,3 +29,46 @@ class Category(models.Model):
 
 bu yerdas agarda     category = models.ManyToManyField(to="Category" , related_name="products")
 ManyToManyField orniga Foreinkey bolganda   Product ni boshqa modellarga ulab bolmas edi ManyToMany shu modelni ham boshqa joylarda ishlashiga yordam beradi
+
+
+
+
+3 ]
+
+
+    {% for item in product %}
+    <tr class="hover:bg-white/[0.02] transition-colors group">
+
+        {% for i in item.category.all %}
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+        <a href="{% url 'product_detail' i.id %}">{{i.name}}a>
+        </td>
+        {% endfor %}
+
+demak bu yerda har bitta productga tegishli categroyiadagi malumotlarni ovolib for ga solyabmiz , chunki bu yerda har bitta productga boshqa bir kategoriya boglangan
+
+
+
+4 ] {% for i in product.product_in.all %}
+yani bu yerda viewsdan kelyabdi product bu yerda product ga boglangan malumotlarni chaqirib olyabdi product_in 'related_nem'
+
+
+modelga ga boshqa bir modelga boglangan boglangan modelning nomi bu relayted_name desak ham boladi, yani productga boglangan kopgina modellarni related_name orqali chaqirib olishdir teskari boglanish qilish
+
+
+5 ] 
+
+
+ def products(request):
+    mahsulot = Kategoriya.objects.first()
+    mahsulot2 = mahsulot.products.all()
+
+bunda Kategorydagi birinchi Kategoryadagi hamma mahsulotlarni olyabmiz  products >>> 'related_name'
+
+
+
+
+
+
+
+
