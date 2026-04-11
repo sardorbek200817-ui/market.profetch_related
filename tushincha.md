@@ -66,6 +66,15 @@ modelga ga boshqa bir modelga boglangan boglangan modelning nomi bu relayted_nam
 bunda Kategorydagi birinchi Kategoryadagi hamma mahsulotlarni olyabmiz  products >>> 'related_name'
 
 
+6 ] try:
+        product = Product.objects.get(id=id)
+    except:
+        return render(request , "1.html"
+
+Yani bu yerda agarda id hatolik bolganda shunchaki except ishlasin deyabdi yani try ning vazifasi
+hato chiqarmaslik >>>>> if dan farqi if bu tenglab yuborishga qodir try esa shunchaki ohshamasa
+keyingisiga otib ketaver degani
+        
 
 
 
